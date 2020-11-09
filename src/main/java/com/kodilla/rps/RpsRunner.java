@@ -2,40 +2,41 @@ package com.kodilla.rps;
 
 
 public class RpsRunner {
-    private Player player1, player2;
-    private int[][] tableRps = {{0,1,2}, {2,0,1}, {1,2,0}};
+    private Player computer, human;
+    private int[][] rpsTable = {{0,1,2}, {2,0,1}, {1,2,0}};
 
-    public RpsRunner(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        game();
+    public RpsRunner(Player computer, Player human) {
+        this.computer = computer;
+        this.human = human;
     }
 
     private boolean isFinished() {
-        if (player1.isWinner()) {
+        if (computer.isWinner()) {
             return true;
         }
-        return player2.isWinner();
+        return human.isWinner();
     }
 
     private void game() {
         while(!isFinished()) {
-            int whoScores = tableRps[player1.makeMove()][player2.makeMove()];
+            int whoScores = rpsTable[human.makeMove()][computer.makeMove()];
             if(whoScores == 1) {
-                player1.score();
+                human.score();
             } else if(whoScores == 2) {
-                player2.score();
+                computer.score();
             }
         }
-        if(player1.isWinner()) {
-            System.out.println(player1.getName() + " " + "wins");
-        } else System.out.println(player2.getName() + " " + "wins");
+        if(human.isWinner()) {
+            System.out.println(human.getName() + " " + "wins");
+        } else System.out.println("Computer" + " " + "wins");
     }
 
 
     public static void main(String[] args) {
-
-
+        Player computer = new Player("Computer", 7);
+        Player human = new Human("Peter Jay", 7);
+        RpsRunner rpsrunner = new RpsRunner(computer, human);
+        rpsrunner.game();
 
     }
 

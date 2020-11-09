@@ -12,11 +12,15 @@ public class Player {
 
     }
     public void score() {
+        System.out.println(getName() + " " + "scores");
         score++;
     }
 
     public int makeMove() {
-        return 0;
+        int move = (int) Math.floor(Math.random() * 3);
+        System.out.println(getName() + " " + (move + 1) + " ");
+        return move;
+
     }
 
     public boolean isWinner() {
