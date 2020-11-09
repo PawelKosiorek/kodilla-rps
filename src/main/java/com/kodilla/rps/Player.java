@@ -1,7 +1,9 @@
 package com.kodilla.rps;
 
+
+
 public class Player {
-    private String name;
+    protected String name;
     private int score = 0;
     private int wins;
 
@@ -12,25 +14,24 @@ public class Player {
 
     }
     public void score() {
-        System.out.println(getName() + " " + "scores");
+        System.out.println(name + " " + "scores");
         score++;
     }
 
     public int makeMove() {
-        int move = (int) Math.floor(Math.random() * 3);
-        System.out.println(getName() + " " + (move + 1) + " ");
+        int move = (int) Math.floor((Math.random() * 3) + 1);
+        System.out.println(name + " " + move + " ");
         return move;
 
     }
 
     public boolean isWinner() {
-        if (score == wins) {
-            return true;
-        } else return false;
+        if (score == wins) { return true; }
+        else return false;
     }
-    public String getName() {
-        return name;
-    }
+    public void printName() { System.out.print(name + " "); }
+
+    public void printScore() {System.out.print(score + " "); }
 }
 
 

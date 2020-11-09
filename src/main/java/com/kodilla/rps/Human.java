@@ -8,10 +8,7 @@ public class Human extends Player {
 
     @Override
     public int makeMove() {
-        int move = (int) Math.floor(Math.random() * 3);
-        System.out.println(getName() + " " + move + " ");
-        return move;
-    }
-
-
+        System.out.print("Please enter your move: '1' for rock, '2' for scissors, '3' for paper ");
+        return KeyboardReader.inputInteger();
+        }
 }

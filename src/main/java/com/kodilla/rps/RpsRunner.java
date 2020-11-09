@@ -1,42 +1,36 @@
 package com.kodilla.rps;
 
 
+
 public class RpsRunner {
-    private Player computer, human;
-    private int[][] rpsTable = {{0,1,2}, {2,0,1}, {1,2,0}};
 
-    public RpsRunner(Player computer, Player human) {
-        this.computer = computer;
-        this.human = human;
+    public static void rpsRunner() {
+        System.out.println("Instruction: ");
+        System.out.println("Please enter '1' for rock, '2' for scissors, '3' for paper");
+        System.out.println("'n' if you wish to start a new game, 'x' to exit");
+        System.out.print("Please enter your name: ");
+        String name = KeyboardReader.inputString();
+        System.out.print("Up to how many winnings?  ");
+        int winnings = Integer.parseInt(KeyboardReader.inputString());
+        Game game = new Game(new Player("Computer", winnings), new Human(name, winnings));
+        game.playGame();
     }
-
-    private boolean isFinished() {
-        if (computer.isWinner()) {
-            return true;
+    public static void play() {
+        boolean end = false;
+        while(!end) {
+            rpsRunner();
+            System.out.print("Enter 'n' to play a new game, 'x' to finish ");
+            if(KeyboardReader.inputString() == "n") { end = false; }
+            if(KeyboardReader.inputString() == "x"){ end = true; }
         }
-        return human.isWinner();
     }
 
-    private void game() {
-        while(!isFinished()) {
-            int whoScores = rpsTable[human.makeMove()][computer.makeMove()];
-            if(whoScores == 1) {
-                human.score();
-            } else if(whoScores == 2) {
-                computer.score();
-            }
-        }
-        if(human.isWinner()) {
-            System.out.println(human.getName() + " " + "wins");
-        } else System.out.println("Computer" + " " + "wins");
-    }
+
+
 
 
     public static void main(String[] args) {
-        Player computer = new Player("Computer", 7);
-        Player human = new Human("Peter Jay", 7);
-        RpsRunner rpsrunner = new RpsRunner(computer, human);
-        rpsrunner.game();
+        RpsRunner.play();
 
     }
 
